@@ -33,6 +33,9 @@ export default function Dashboard({ onSettingsOpen }) {
       setShowChat(true);
     } catch (error) {
       console.error('Failed to create task:', error);
+      // Even if task creation fails, still show chat for manual alarm setup
+      setPendingTask({ ...taskData, id: 'temp-' + Date.now() });
+      setShowChat(true);
     }
   };
 

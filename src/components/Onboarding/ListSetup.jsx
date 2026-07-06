@@ -38,9 +38,28 @@ export default function ListSetup({ onComplete }) {
     setSaving(true);
     try {
       const finalNames = names.map((n, i) => n.trim() || EMOJI_SUGGESTIONS[i] || `List ${i + 1}`);
-      await initializeLists(finalNames);
-      await updateUserProfile({ onboardingComplete: true, listCount: count });
+
+      // Add timeout protection
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Operation timeout')), 15000)
+      );
+
+      await Promise.race([
+        initializeLists(finalNames),
+        timeoutPromise
+      ]);
+
+      await Promise.race([
+        updateUserProfile({ onboardingComplete: true, listCount: count }),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Profile update timeout')), 10000)
+        )
+      ]);
+
       onComplete?.();
+    } catch (error) {
+      console.error('Failed to complete onboarding:', error);
+      alert('Xatolik yuz berdi. Iltimos, qayta urinib ko\'ring yoki "Skip" tugmasini bosing.');
     } finally {
       setSaving(false);
     }
@@ -129,7 +148,20 @@ export default function ListSetup({ onComplete }) {
         <div className="flex gap-3">
           <button
             id="onboarding-skip-btn"
-            onClick={() => { updateUserProfile({ onboardingComplete: true }); onComplete?.(); }}
+            onClick={async () => {
+              try {
+                await Promise.race([
+                  updateUserProfile({ onboardingComplete: true }),
+                  new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('Profile update timeout')), 10000)
+                  )
+                ]);
+                onComplete?.();
+              } catch (error) {
+                console.error('Failed to skip onboarding:', error);
+                alert('Xatolik yuz berdi. Iltimos, qayta urinib ko\'ring.');
+              }
+            }}
             className="btn-ghost flex-shrink-0"
           >
             {t('onboarding.skip')}

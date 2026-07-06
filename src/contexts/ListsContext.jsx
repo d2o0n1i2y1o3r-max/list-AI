@@ -79,10 +79,20 @@ export function ListsProvider({ children }) {
       alarmSet: false,
       createdAt: new Date().toISOString(),
     };
-    const ref = await addDoc(
-      collection(db, 'users', user.uid, 'lists', listId, 'tasks'),
-      { ...task, createdAt: serverTimestamp() }
+
+    // Add timeout protection
+    const timeoutPromise = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Firestore write timeout')), 10000)
     );
+
+    const ref = await Promise.race([
+      addDoc(
+        collection(db, 'users', user.uid, 'lists', listId, 'tasks'),
+        { ...task, createdAt: serverTimestamp() }
+      ),
+      timeoutPromise
+    ]);
+
     return { id: ref.id, ...task };
   }, [user]);
 

@@ -14,8 +14,20 @@ export default function CreateTaskModal({ listId, onClose, onCreated }) {
     if (!startTime || !description.trim()) return;
     setSaving(true);
     try {
-      await onCreated?.({ startTime, endTime, description: description.trim() });
+      // Add timeout protection
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Task creation timeout')), 15000)
+      );
+
+      await Promise.race([
+        onCreated?.({ startTime, endTime, description: description.trim() }),
+        timeoutPromise
+      ]);
+
       onClose?.();
+    } catch (error) {
+      console.error('Failed to create task:', error);
+      alert('Xatolik yuz berdi. Iltimos, qayta urinib ko\'ring.');
     } finally {
       setSaving(false);
     }

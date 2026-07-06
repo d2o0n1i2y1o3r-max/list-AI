@@ -115,13 +115,27 @@ export default function ChatPanel({ isOpen, onClose, pendingTask, onAlarmConfirm
     addUserMessage('Yes, set an alarm');
 
     let alarmSet = false;
-    if (permission === 'granted' || permission === 'default') {
-      alarmSet = await scheduleAlarm(
-        currentPendingTask.id || 'new-task',
-        currentPendingTask.startTime,
-        currentPendingTask.description,
-        `Time to start: ${currentPendingTask.description}`
-      );
+    try {
+      if (permission === 'granted' || permission === 'default') {
+        alarmSet = await scheduleAlarm(
+          currentPendingTask.id || 'new-task',
+          currentPendingTask.startTime,
+          currentPendingTask.description,
+          `Time to start: ${currentPendingTask.description}`
+        );
+      } else {
+        addAIMessage(t('ai.permissionNeeded'));
+        const newPerm = await scheduleAlarm(
+          currentPendingTask.id || 'new-task',
+          currentPendingTask.startTime,
+          currentPendingTask.description,
+          `Time to start: ${currentPendingTask.description}`
+        );
+        alarmSet = newPerm;
+      }
+    } catch (error) {
+      console.error('Failed to set alarm:', error);
+      addAIMessage('Signal o\'rnatishda xatolik yuz berdi. Iltimos, brauzer sozlamalarida bildirishnomalarni yoqing.');
     }
 
     if (alarmSet) {

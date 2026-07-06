@@ -71,7 +71,14 @@ export function AuthProvider({ children }) {
       return;
     }
 
+    // Timeout to prevent infinite loading
+    const timeout = setTimeout(() => {
+      setLoading(false);
+      console.warn('Auth loading timeout - forcing loading to false');
+    }, 10000);
+
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      clearTimeout(timeout);
       if (firebaseUser) {
         setUser(firebaseUser);
         const profile = await loadUserProfile(firebaseUser.uid);
@@ -83,7 +90,10 @@ export function AuthProvider({ children }) {
       setLoading(false);
     });
 
-    return unsubscribe;
+    return () => {
+      clearTimeout(timeout);
+      unsubscribe();
+    };
   }, [loadUserProfile]);
 
   const signInWithGoogle = async () => {
