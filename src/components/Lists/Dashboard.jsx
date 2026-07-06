@@ -27,9 +27,13 @@ export default function Dashboard({ onSettingsOpen }) {
 
   const handleTaskCreated = async (taskData) => {
     if (!activeListId) return;
-    const newTask = await createTask(activeListId, taskData);
-    setPendingTask(newTask);
-    setShowChat(true);
+    try {
+      const newTask = await createTask(activeListId, taskData);
+      setPendingTask(newTask);
+      setShowChat(true);
+    } catch (error) {
+      console.error('Failed to create task:', error);
+    }
   };
 
   const handleAlarmConfirmed = async (taskId, alarmSet) => {

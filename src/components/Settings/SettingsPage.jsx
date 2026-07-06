@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { X, Sun, Moon, Monitor, Globe, LogOut, Bell, BellOff, CreditCard, User } from 'lucide-react';
+import { X, Sun, Moon, Monitor, Globe, LogOut, Bell, BellOff, CreditCard, User, Heart } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useLanguage, SUPPORTED_LANGUAGES } from '../../contexts/LanguageContext';
 import { useNotifications } from '../../hooks/useNotifications';
 import PricingPage from '../Pricing/PricingPage';
+import DonateModal from '../Common/DonateModal';
+import { createCheckoutSession, redirectToCheckout } from '../../lib/stripe';
 
 function Section({ title, children }) {
   return (
@@ -40,6 +42,7 @@ export default function SettingsPage({ onClose }) {
   const { language, setLanguage } = useLanguage();
   const { permission, requestPermission } = useNotifications();
   const [showPricing, setShowPricing] = useState(false);
+  const [showDonate, setShowDonate] = useState(false);
 
   const THEME_OPTIONS = [
     { value: 'light', label: t('settings.themeLight'), icon: Sun },
@@ -162,6 +165,13 @@ export default function SettingsPage({ onClose }) {
           </RowItem>
         </Section>
 
+        {/* Donate */}
+        <Section title={t('donate.title')}>
+          <RowItem icon={Heart} label={t('donate.button')} onClick={() => setShowDonate(true)}>
+            <span className="text-xs text-rose-500">→</span>
+          </RowItem>
+        </Section>
+
         {/* Account */}
         <Section title={t('settings.account')}>
           <RowItem icon={LogOut} label={t('settings.signOut')} onClick={signOut}>
@@ -175,6 +185,22 @@ export default function SettingsPage({ onClose }) {
           <p className="text-xs text-[var(--text-muted)]">{t('settings.madeWith')} ♥</p>
         </div>
       </div>
+
+      {/* Donate modal */}
+      {showDonate && (
+        <DonateModal
+          onClose={() => setShowDonate(false)}
+          onDonate={async (amount) => {
+            try {
+              const sessionId = await createCheckoutSession(amount, user?.uid);
+              await redirectToCheckout(sessionId);
+            } catch (error) {
+              console.error('Donation error:', error);
+              throw error;
+            }
+          }}
+        />
+      )}
     </div>
   );
 }

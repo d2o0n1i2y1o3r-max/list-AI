@@ -197,5 +197,25 @@
     "next": "Keyingisi",
     "skip": "O'tkazish",
     "ok": "OK"
+  },
+  "donate": {
+    "title": "Homiylik qilish",
+    "description": "Loyihani qo'llab-quvvatlash uchun homiylik qiling",
+    "button": "Homiylik qilish",
+    "selectAmount": "Summani tanlang",
+    "customAmount": "Boshqa summa",
+    "amountPlaceholder": "Summa ($)",
+    "confirm": "Yuborish",
+    "processing": "To'lov qayta ishlanmoqda...",
+    "success": "Pul muvaffaqiyatli yechib olindi, rahmat!",
+    "error": "To'lov muvaffaqiyatsiz bo'ldi. Iltimos, qayta urinib ko'ring.",
+    "cancel": "Bekor qilish",
+    "amounts": {
+      "1": "$1",
+      "5": "$5",
+      "10": "$10",
+      "20": "$20",
+      "50": "$50"
+    }
   }
 }

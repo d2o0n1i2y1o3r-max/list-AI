@@ -197,5 +197,25 @@
     "next": "Next",
     "skip": "Skip",
     "ok": "OK"
+  },
+  "donate": {
+    "title": "Donate",
+    "description": "Support the project with a donation",
+    "button": "Donate",
+    "selectAmount": "Select amount",
+    "customAmount": "Custom amount",
+    "amountPlaceholder": "Amount ($)",
+    "confirm": "Send",
+    "processing": "Processing payment...",
+    "success": "Payment successful, thank you!",
+    "error": "Payment failed. Please try again.",
+    "cancel": "Cancel",
+    "amounts": {
+      "1": "$1",
+      "5": "$5",
+      "10": "$10",
+      "20": "$20",
+      "50": "$50"
+    }
   }
 }
