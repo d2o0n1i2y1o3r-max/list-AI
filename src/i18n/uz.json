@@ -1,0 +1,197 @@
+{
+  "app": {
+    "name": "Kunlik Ro'yxat",
+    "tagline": "Sun'iy intellekt yordamchingiz"
+  },
+  "loading": {
+    "title": "Tayyorlanmoqda...",
+    "checking": "Ulanish tekshirilmoqda..."
+  },
+  "offline": {
+    "title": "Internet aloqasi yo'q",
+    "description": "Kunlik Ro'yxat vazifalarni sinxronlashtirish va AI yordamchini ishlatish uchun internet aloqasini talab qiladi.",
+    "retry": "Qayta urinish",
+    "retrying": "Tekshirilmoqda..."
+  },
+  "auth": {
+    "welcome": "Xush kelibsiz",
+    "welcomeNew": "Boshlash",
+    "subtitle": "Shaxsiy AI rejalashtiruvchingiz. Oddiy, aqlli va har doim yoningizda.",
+    "signInGoogle": "Google orqali davom etish",
+    "signInEmail": "Email bilan kirish",
+    "signUpEmail": "Hisob yaratish",
+    "orContinueWith": "yoki email bilan davom eting",
+    "email": "Email",
+    "password": "Parol",
+    "emailPlaceholder": "siz@misol.com",
+    "passwordPlaceholder": "Parolingiz",
+    "noAccount": "Hisobingiz yo'qmi?",
+    "hasAccount": "Hisobingiz bormi?",
+    "signUp": "Ro'yxatdan o'tish",
+    "signIn": "Kirish",
+    "forgotPassword": "Parolni unutdingizmi?",
+    "signingIn": "Kirilmoqda...",
+    "signingUp": "Hisob yaratilmoqda...",
+    "demoMode": "Demo rejimida ishlayapti",
+    "demoDescription": "Firebase sozlanmagan. Siz demo hisob bilan ilovani ko'rib chiqishingiz mumkin.",
+    "continueDemo": "Demo rejimida davom etish",
+    "errors": {
+      "invalidEmail": "Iltimos, to'g'ri email manzilini kiriting.",
+      "weakPassword": "Parol kamida 6 ta belgidan iborat bo'lishi kerak.",
+      "wrongPassword": "Noto'g'ri parol. Iltimos, qayta urinib ko'ring.",
+      "userNotFound": "Bu email bilan hisob topilmadi.",
+      "emailInUse": "Bu email bilan hisob allaqachon mavjud.",
+      "googleFailed": "Google orqali kirish muvaffaqiyatsiz. Qayta urinib ko'ring.",
+      "generic": "Nimadir noto'g'ri ketdi. Iltimos, qayta urinib ko'ring."
+    }
+  },
+  "onboarding": {
+    "title": "Ro'yxatlaringizni sozlaylik",
+    "subtitle": "Nechta ro'yxat bilan boshlashni xohlaysiz? Keyinchalik qo'shishingiz mumkin.",
+    "listCount": "Ro'yxatlar soni",
+    "listNameLabel": "{{index}}-ro'yxatni nomlang",
+    "listNamePlaceholder": "masalan: Ish, Shaxsiy, Fitnes...",
+    "continue": "Boshlaylik",
+    "back": "Orqaga",
+    "tip": "Ko'pchilik 2–3 ta ro'yxat bilan boshlaydi.",
+    "skip": "Hozircha o'tkazib yuborish"
+  },
+  "dashboard": {
+    "title": "Bugun",
+    "subtitle": "{{date}}",
+    "addTask": "Yangi vazifa",
+    "noTasks": "Hali hech narsa yo'q",
+    "noTasksHint": "Birinchi vazifangizni qo'shish uchun quyidagi tugmani bosing.",
+    "listEmpty": "Bu ro'yxat bo'sh",
+    "allDone": "Bugungi barcha vazifalar bajarildi 🎉",
+    "settings": "Sozlamalar",
+    "openChat": "AI bilan suhbat",
+    "lists": "Ro'yxatlarim",
+    "tasks": "vazifa",
+    "task": "vazifa"
+  },
+  "task": {
+    "startTime": "Boshlanish vaqti",
+    "endTime": "Tugash vaqti",
+    "description": "Vazifa nima?",
+    "descriptionPlaceholder": "Vazifangizni tasvirlab bering...",
+    "create": "Vazifa qo'shish",
+    "edit": "Vazifani tahrirlash",
+    "delete": "O'chirish",
+    "complete": "Bajarildi deb belgilash",
+    "undo": "Bekor qilish",
+    "saving": "Saqlanmoqda...",
+    "status": {
+      "pending": "Rejalashtirilgan",
+      "active": "Jarayonda",
+      "done": "Bajarildi",
+      "missed": "O'tkazib yuborildi"
+    },
+    "alarm": {
+      "set": "Signal o'rnatildi",
+      "notSet": "Signal yo'q"
+    },
+    "deleteConfirm": "Bu vazifani o'chirasizmi?",
+    "deleteConfirmDesc": "Bu amalni bekor qilib bo'lmaydi.",
+    "cancel": "Bekor qilish",
+    "confirm": "O'chirish"
+  },
+  "ai": {
+    "placeholder": "Menga savol bering...",
+    "send": "Yuborish",
+    "thinking": "O'ylanmoqda...",
+    "uploadFile": "Fayl yuklash",
+    "fileAttached": "Fayl biriktirildi",
+    "clearChat": "Chatni tozalash",
+    "mockMode": "AI demo rejimida ishlayapti",
+    "greeting": "Salom! Kuningizni rejalashtirishga yordam beraman. Ro'yxatingizda nima bor?",
+    "alarmAsk": "Buni jadvalingizga qo'shib, boshlanish vaqti uchun signal o'rnatishimni xohlaysizmi?",
+    "alarmSet": "Bajarildi — {{time}} uchun signal o'rnatildi. Vaqti kelganda shu yerda eslataman.",
+    "alarmDeclined": "Tushunarli — siz aytmasangiz, signal o'rnatmayman. Fikringiz o'zgarse, ayting.",
+    "notificationDenied": "Signal o'rnatmoqchi edim, lekin brauzeringizda bildirishnomalar o'chirilgan. Brauzer sozlamalarida yoqishingiz mumkin.",
+    "permissionNeeded": "Signallar o'rnatish uchun brauzeringizning bildirishnoma ruxsati kerak. So'rasam maylimi?",
+    "taskAdded": "Vazifa ro'yxatingizga qo'shildi."
+  },
+  "pricing": {
+    "title": "Hamma narsani oching",
+    "subtitle": "Bepul boshlang, tayyor bo'lganingizda yangilang.",
+    "popular": "Eng mashhur",
+    "currentPlan": "Joriy reja",
+    "upgrade": "Yangilash",
+    "getStarted": "Boshlash",
+    "plans": {
+      "trial": {
+        "name": "Sinov",
+        "price": "Bepul",
+        "period": "1 kun uchun",
+        "description": "Hamma narsani sinab ko'ring, karta shart emas."
+      },
+      "weekly": {
+        "name": "Haftalik",
+        "price": "$3",
+        "period": "haftada",
+        "description": "Moslashuvchan, uzoq muddatli majburiyat yo'q."
+      },
+      "monthly": {
+        "name": "Oylik",
+        "price": "$10",
+        "period": "oyda",
+        "description": "Doimiy rejalashtiruvchilar uchun eng yaxshi."
+      },
+      "yearly": {
+        "name": "Yillik",
+        "price": "$134",
+        "period": "yilda",
+        "description": "Eng arzon — 40% dan ortiq tejang.",
+        "savings": "Oylikdan $86 tejaysiz"
+      }
+    },
+    "features": {
+      "unlimitedLists": "Cheksiz ro'yxatlar",
+      "aiScheduling": "AI rejalashtirish",
+      "smartAlarms": "Aqlli signallar",
+      "fileUploads": "Chatda fayllar yuklash",
+      "prioritySupport": "Ustuvor yordam",
+      "upTo3Lists": "3 tagacha ro'yxat",
+      "basicAI": "Asosiy AI chat",
+      "alarmBasic": "Har bir vazifa uchun 1 signal"
+    },
+    "checkout": "To'lov",
+    "checkoutNote": "Stripe orqali xavfsiz to'lov. Istalgan vaqtda bekor qiling.",
+    "trialNote": "Sinov uchun kredit karta shart emas."
+  },
+  "settings": {
+    "title": "Sozlamalar",
+    "theme": "Ko'rinish",
+    "themeLight": "Yorug'",
+    "themeDark": "Qorong'u",
+    "themeSystem": "Tizim standarti",
+    "language": "Til",
+    "account": "Hisob",
+    "signOut": "Chiqish",
+    "version": "Versiya {{version}}",
+    "madeWith": "Mehr bilan yaratilgan",
+    "notifications": "Bildirishnomalar",
+    "notificationsEnabled": "Yoqilgan",
+    "notificationsDisabled": "O'chirilgan",
+    "notificationsEnable": "Bildirishnomalarni yoqish",
+    "plan": "Sizning rejangiz",
+    "managePlan": "Rejani boshqarish",
+    "profile": "Profil",
+    "name": "Ko'rsatma nomi",
+    "email": "Email"
+  },
+  "common": {
+    "loading": "Yuklanmoqda...",
+    "error": "Nimadir noto'g'ri ketdi",
+    "retry": "Qayta urinish",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "close": "Yopish",
+    "done": "Tayyor",
+    "back": "Orqaga",
+    "next": "Keyingisi",
+    "skip": "O'tkazish",
+    "ok": "OK"
+  }
+}

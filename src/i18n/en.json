@@ -1,0 +1,197 @@
+{
+  "app": {
+    "name": "Daily List",
+    "tagline": "Your AI-powered planner"
+  },
+  "loading": {
+    "title": "Getting things ready...",
+    "checking": "Checking connection..."
+  },
+  "offline": {
+    "title": "No internet connection",
+    "description": "Daily List needs an internet connection to sync your tasks and power the AI assistant.",
+    "retry": "Try again",
+    "retrying": "Checking..."
+  },
+  "auth": {
+    "welcome": "Welcome back",
+    "welcomeNew": "Get started",
+    "subtitle": "Your personal AI planner. Simple, smart, and always on your side.",
+    "signInGoogle": "Continue with Google",
+    "signInEmail": "Sign in with email",
+    "signUpEmail": "Create account",
+    "orContinueWith": "or continue with email",
+    "email": "Email",
+    "password": "Password",
+    "emailPlaceholder": "you@example.com",
+    "passwordPlaceholder": "Your password",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signUp": "Sign up",
+    "signIn": "Sign in",
+    "forgotPassword": "Forgot password?",
+    "signingIn": "Signing in...",
+    "signingUp": "Creating account...",
+    "demoMode": "Running in demo mode",
+    "demoDescription": "Firebase is not configured. You can explore the app with a demo account.",
+    "continueDemo": "Continue in demo mode",
+    "errors": {
+      "invalidEmail": "Please enter a valid email address.",
+      "weakPassword": "Password must be at least 6 characters.",
+      "wrongPassword": "Incorrect password. Please try again.",
+      "userNotFound": "No account found with this email.",
+      "emailInUse": "An account already exists with this email.",
+      "googleFailed": "Google sign-in failed. Please try again.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "onboarding": {
+    "title": "Let's set up your lists",
+    "subtitle": "How many lists do you want to start with? You can always add more later.",
+    "listCount": "Number of lists",
+    "listNameLabel": "Name your list {{index}}",
+    "listNamePlaceholder": "e.g. Work, Personal, Fitness...",
+    "continue": "Let's go",
+    "back": "Back",
+    "tip": "Most people start with 2–3 lists.",
+    "skip": "Skip for now"
+  },
+  "dashboard": {
+    "title": "Today",
+    "subtitle": "{{date}}",
+    "addTask": "New task",
+    "noTasks": "Nothing here yet",
+    "noTasksHint": "Tap the button below to add your first task.",
+    "listEmpty": "This list is empty",
+    "allDone": "All done for today 🎉",
+    "settings": "Settings",
+    "openChat": "Chat with AI",
+    "lists": "My lists",
+    "tasks": "tasks",
+    "task": "task"
+  },
+  "task": {
+    "startTime": "Start time",
+    "endTime": "End time",
+    "description": "What's the task?",
+    "descriptionPlaceholder": "Describe your task...",
+    "create": "Create task",
+    "edit": "Edit task",
+    "delete": "Delete",
+    "complete": "Mark done",
+    "undo": "Mark undone",
+    "saving": "Saving...",
+    "status": {
+      "pending": "Upcoming",
+      "active": "In progress",
+      "done": "Done",
+      "missed": "Missed"
+    },
+    "alarm": {
+      "set": "Alarm set",
+      "notSet": "No alarm"
+    },
+    "deleteConfirm": "Delete this task?",
+    "deleteConfirmDesc": "This can't be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  },
+  "ai": {
+    "placeholder": "Ask me anything...",
+    "send": "Send",
+    "thinking": "Thinking...",
+    "uploadFile": "Upload a file",
+    "fileAttached": "File attached",
+    "clearChat": "Clear chat",
+    "mockMode": "AI running in demo mode",
+    "greeting": "Hey! I'm here to help you plan your day. What's on your list?",
+    "alarmAsk": "Want me to add this to your schedule and set an alarm for the start time?",
+    "alarmSet": "Done — alarm set for {{time}}. I'll remind you right here when it's time.",
+    "alarmDeclined": "Got it — I won't set an alarm unless you say so. Just let me know if you change your mind.",
+    "notificationDenied": "I'd like to set an alarm, but your browser has notifications turned off. You can enable them in your browser settings.",
+    "permissionNeeded": "To set alarms, I'll need your browser's notification permission. May I ask for it?",
+    "taskAdded": "Task added to your list."
+  },
+  "pricing": {
+    "title": "Unlock everything",
+    "subtitle": "Start free, upgrade when you're ready.",
+    "popular": "Most popular",
+    "currentPlan": "Current plan",
+    "upgrade": "Upgrade",
+    "getStarted": "Get started",
+    "plans": {
+      "trial": {
+        "name": "Trial",
+        "price": "Free",
+        "period": "for 1 day",
+        "description": "Try it all, no card needed."
+      },
+      "weekly": {
+        "name": "Weekly",
+        "price": "$3",
+        "period": "per week",
+        "description": "Flexible, no long commitment."
+      },
+      "monthly": {
+        "name": "Monthly",
+        "price": "$10",
+        "period": "per month",
+        "description": "Best for consistent planners."
+      },
+      "yearly": {
+        "name": "Yearly",
+        "price": "$134",
+        "period": "per year",
+        "description": "Best value — save over 40%.",
+        "savings": "Save $86 vs monthly"
+      }
+    },
+    "features": {
+      "unlimitedLists": "Unlimited lists",
+      "aiScheduling": "AI scheduling",
+      "smartAlarms": "Smart alarms",
+      "fileUploads": "File uploads in chat",
+      "prioritySupport": "Priority support",
+      "upTo3Lists": "Up to 3 lists",
+      "basicAI": "Basic AI chat",
+      "alarmBasic": "1 alarm per task"
+    },
+    "checkout": "Checkout",
+    "checkoutNote": "Secure checkout via Stripe. Cancel anytime.",
+    "trialNote": "No credit card required for trial."
+  },
+  "settings": {
+    "title": "Settings",
+    "theme": "Appearance",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System default",
+    "language": "Language",
+    "account": "Account",
+    "signOut": "Sign out",
+    "version": "Version {{version}}",
+    "madeWith": "Made with care",
+    "notifications": "Notifications",
+    "notificationsEnabled": "Enabled",
+    "notificationsDisabled": "Disabled",
+    "notificationsEnable": "Enable notifications",
+    "plan": "Your plan",
+    "managePlan": "Manage plan",
+    "profile": "Profile",
+    "name": "Display name",
+    "email": "Email"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "done": "Done",
+    "back": "Back",
+    "next": "Next",
+    "skip": "Skip",
+    "ok": "OK"
+  }
+}
