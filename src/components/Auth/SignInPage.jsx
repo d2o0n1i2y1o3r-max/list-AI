@@ -10,7 +10,10 @@ const AUTH_ERROR_MAP = {
   'auth/user-not-found': 'auth.errors.userNotFound',
   'auth/email-already-in-use': 'auth.errors.emailInUse',
   'auth/popup-closed-by-user': null,
-  'DEMO_MODE': 'auth.errors.generic',
+  'auth/unauthorized-domain': 'auth.errors.unauthorizedDomain',
+  'auth/popup-blocked': 'auth.errors.popupBlocked',
+  'auth/invalid-api-key': 'auth.errors.invalidApiKey',
+  'auth/operation-not-allowed': 'auth.errors.operationNotAllowed',
 };
 
 function GoogleIcon() {
@@ -36,12 +39,20 @@ export default function SignInPage({ onSuccess }) {
   const [error, setError] = useState('');
 
   const handleError = (err) => {
+    console.error('Auth error:', err.code, err.message);
     const key = AUTH_ERROR_MAP[err.code || err.message];
     if (key === null) return; // User dismissed popup, etc.
-    setError(t(key || 'auth.errors.generic'));
+    
+    if (key) {
+      setError(t(key));
+    } else {
+      // Show exact error code as requested, rather than generic message
+      setError(err.code || err.message || 'Unknown error');
+    }
   };
 
   const handleGoogle = async () => {
+    console.log('Google Sign-In button clicked');
     setLoading(true);
     setError('');
     try {
@@ -56,6 +67,7 @@ export default function SignInPage({ onSuccess }) {
 
   const handleEmailSubmit = async (e) => {
     e.preventDefault();
+    console.log(`Email form submitted in ${mode} mode`, { email });
     if (!email || !password) return;
     setLoading(true);
     setError('');
@@ -140,10 +152,73 @@ export default function SignInPage({ onSuccess }) {
             </div>
           )}
 
-          {/* Google Sign-In */}
-          <>
+          {/* Email form as primary */}
+          {(mode === 'signin' || mode === 'signup') ? (
+            <>
+              <form onSubmit={handleEmailSubmit} className="space-y-4">
+                <div>
+                  <label className="label">{t('auth.email')}</label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-muted)]" />
+                    <input
+                      id="email-input"
+                      type="email"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      placeholder={t('auth.emailPlaceholder')}
+                      className="input-field pl-10"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="label">{t('auth.password')}</label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-muted)]" />
+                    <input
+                      id="password-input"
+                      type={showPassword ? 'text' : 'password'}
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      placeholder={t('auth.passwordPlaceholder')}
+                      className="input-field pl-10 pr-10"
+                      required
+                      minLength={6}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
+                    >
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
+                </div>
+
+                <button
+                  id="email-submit-btn"
+                  type="submit"
+                  disabled={loading}
+                  className="btn-primary w-full justify-center disabled:opacity-60"
+                >
+                  {loading
+                    ? (mode === 'signup' ? t('auth.signingUp') : t('auth.signingIn'))
+                    : (mode === 'signup' ? t('auth.signUp') : t('auth.signIn'))
+                  }
+                </button>
+              </form>
+
+              <div className="flex items-center gap-3 my-5">
+                <div className="flex-1 h-px bg-[var(--border)]" />
+                <span className="text-xs text-[var(--text-muted)]">{t('auth.orContinueWith')}</span>
+                <div className="flex-1 h-px bg-[var(--border)]" />
+              </div>
+
+              {/* Google Sign-In as secondary */}
               <button
                 id="google-signin-btn"
+                type="button"
                 onClick={handleGoogle}
                 disabled={loading}
                 className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-2xl
@@ -157,79 +232,17 @@ export default function SignInPage({ onSuccess }) {
                 {mode === 'signup' ? 'Sign up with Google' : t('auth.signInGoogle')}
               </button>
 
-              <div className="flex items-center gap-3 my-5">
-                <div className="flex-1 h-px bg-[var(--border)]" />
-                <span className="text-xs text-[var(--text-muted)]">{t('auth.orContinueWith')}</span>
-                <div className="flex-1 h-px bg-[var(--border)]" />
-              </div>
-            </>
-
-          {/* Email form */}
-          {(mode === 'signin' || mode === 'signup') ? (
-            <form onSubmit={handleEmailSubmit} className="space-y-4">
-              <div>
-                <label className="label">{t('auth.email')}</label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-muted)]" />
-                  <input
-                    id="email-input"
-                    type="email"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    placeholder={t('auth.emailPlaceholder')}
-                    className="input-field pl-10"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="label">{t('auth.password')}</label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--text-muted)]" />
-                  <input
-                    id="password-input"
-                    type={showPassword ? 'text' : 'password'}
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    placeholder={t('auth.passwordPlaceholder')}
-                    className="input-field pl-10 pr-10"
-                    required
-                    minLength={6}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
-                  >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </button>
-                </div>
-              </div>
-
-              <button
-                id="email-submit-btn"
-                type="submit"
-                disabled={loading}
-                className="btn-primary w-full justify-center disabled:opacity-60"
-              >
-                {loading
-                  ? (mode === 'signup' ? t('auth.signingUp') : t('auth.signingIn'))
-                  : (mode === 'signup' ? t('auth.signUp') : t('auth.signIn'))
-                }
-              </button>
-
               <button
                 type="button"
                 onClick={() => { setMode(mode === 'signup' ? 'signin' : 'signup'); setError(''); }}
-                className="w-full text-center text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                className="w-full text-center text-xs mt-6 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
               >
                 {mode === 'signup' ? t('auth.hasAccount') : t('auth.noAccount')}{' '}
                 <span className="font-semibold text-amber-600 dark:text-amber-400">
                   {mode === 'signup' ? t('auth.signIn') : t('auth.signUp')}
                 </span>
               </button>
-            </form>
+            </>
           ) : null}
 
         </div>

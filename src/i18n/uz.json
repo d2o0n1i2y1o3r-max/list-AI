@@ -42,7 +42,11 @@
       "userNotFound": "Bu email bilan hisob topilmadi.",
       "emailInUse": "Bu email bilan hisob allaqachon mavjud.",
       "googleFailed": "Google orqali kirish muvaffaqiyatsiz. Qayta urinib ko'ring.",
-      "generic": "Nimadir noto'g'ri ketdi. Iltimos, qayta urinib ko'ring."
+      "generic": "Nimadir noto'g'ri ketdi. Iltimos, qayta urinib ko'ring.",
+      "unauthorizedDomain": "Popup ochilib yopildi. Firebase Console'da bu domen 'Authorized domains' ro'yxatiga qo'shilganini tekshiring.",
+      "popupBlocked": "Brauzer popupni blokladi. Iltimos, ushbu sayt uchun popup'larga ruxsat bering.",
+      "invalidApiKey": "API kaliti noto'g'ri. Iltimos, .env yoki firebase.js sozlamalarini tekshiring.",
+      "operationNotAllowed": "Bu usul yoqilmagan. Firebase Console'da Google provayderi yoqilganini tekshiring."
     }
   },
   "onboarding": {

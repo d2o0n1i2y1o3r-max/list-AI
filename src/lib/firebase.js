@@ -24,7 +24,7 @@ const firebaseConfig = {
 };
 
 // Check if Firebase is configured with real values
-export const isFirebaseConfigured = !firebaseConfig.apiKey.includes('REPLACE_WITH');
+export const isFirebaseConfigured = !firebaseConfig.apiKey.includes('REPLACE_WITH') && firebaseConfig.apiKey !== 'your_api_key_here';
 
 let app, auth, db, googleProvider;
 
@@ -36,7 +36,7 @@ try {
   googleProvider.addScope('profile');
   googleProvider.addScope('email');
 } catch (error) {
-  console.warn('Firebase initialization failed — running in demo mode:', error.message);
+  console.error('Firebase initialization failed. Please check your .env variables:', error.message);
 }
 
 export { auth, db, googleProvider };

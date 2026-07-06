@@ -175,8 +175,7 @@ function CheckoutModal({ plan, onClose }) {
               <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center mx-auto mb-4">
                 <Check className="w-6 h-6 text-emerald-500" />
               </div>
-              <p className="font-semibold text-[var(--text-primary)] mb-1">You're subscribed!</p>
-              <p className="text-sm text-[var(--text-muted)] mb-4">This is a demo — no real charge was made.</p>
+              <p className="text-sm text-[var(--text-muted)] mb-4">{t('pricing.checkoutNote')}</p>
               <button id="checkout-done-btn" onClick={onClose} className="btn-primary">Done</button>
             </div>
           )}

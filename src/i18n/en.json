@@ -42,7 +42,11 @@
       "userNotFound": "No account found with this email.",
       "emailInUse": "An account already exists with this email.",
       "googleFailed": "Google sign-in failed. Please try again.",
-      "generic": "Something went wrong. Please try again."
+      "generic": "Something went wrong. Please try again.",
+      "unauthorizedDomain": "Popup closed immediately. Please ensure this domain is added to 'Authorized domains' in your Firebase Console.",
+      "popupBlocked": "Popup blocked by browser. Please allow popups for this site.",
+      "invalidApiKey": "Invalid API key. Please check your .env or firebase.js config.",
+      "operationNotAllowed": "Google Sign-In is not enabled. Please enable it in Firebase Console."
     }
   },
   "onboarding": {
@@ -107,7 +111,7 @@
     "greeting": "Hey! I'm here to help you plan your day. What's on your list?",
     "alarmAsk": "Want me to add this to your schedule and set an alarm for the start time?",
     "alarmSet": "Done — alarm set for {{time}}. I'll remind you right here when it's time.",
-    "alarmDeclined": "Got it — I won't set an alarm unless you say so. Just let me know if you change your mind.",
+    "alarmDeclined": "Got it — I won't set an alarm unless you give me permission. Just let me know if you change your mind.",
     "notificationDenied": "I'd like to set an alarm, but your browser has notifications turned off. You can enable them in your browser settings.",
     "permissionNeeded": "To set alarms, I'll need your browser's notification permission. May I ask for it?",
     "taskAdded": "Task added to your list."

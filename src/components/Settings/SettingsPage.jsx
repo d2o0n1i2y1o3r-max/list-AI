@@ -75,7 +75,7 @@ export default function SettingsPage({ onClose }) {
           </RowItem>
           <RowItem icon={User} label={t('settings.email')}>
             <span className="text-xs text-[var(--text-secondary)] font-mono">
-              {user?.email || (user?.isDemo ? 'demo@dailylist.app' : '—')}
+              {user?.email || '—'}
             </span>
           </RowItem>
         </Section>

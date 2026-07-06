@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import {
   signInWithPopup,
+  signInWithRedirect,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut as firebaseSignOut,
@@ -55,7 +56,7 @@ export function AuthProvider({ children }) {
     const newProfile = { ...userProfile, ...updates };
     setUserProfile(newProfile);
 
-    if (!isFirebaseConfigured || user.isDemo) return;
+    if (!isFirebaseConfigured) return;
     try {
       const docRef = doc(db, 'users', user.uid);
       await updateDoc(docRef, updates);
@@ -87,38 +88,58 @@ export function AuthProvider({ children }) {
 
   const signInWithGoogle = async () => {
     if (!isFirebaseConfigured) {
-      throw new Error('DEMO_MODE');
+      throw new Error('auth/invalid-api-key');
     }
     setError(null);
-    const result = await signInWithPopup(auth, googleProvider);
-    return result.user;
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      return result.user;
+    } catch (err) {
+      console.error('signInWithPopup failed:', err);
+      if (err.code !== 'auth/unauthorized-domain' && err.code !== 'auth/popup-closed-by-user') {
+        console.log('Falling back to signInWithRedirect...');
+        await signInWithRedirect(auth, googleProvider);
+      } else {
+        throw err;
+      }
+    }
   };
 
   const signInWithEmail = async (email, password) => {
     if (!isFirebaseConfigured) {
-      throw new Error('DEMO_MODE');
+      throw new Error('auth/invalid-api-key');
     }
     setError(null);
-    const result = await signInWithEmailAndPassword(auth, email, password);
-    return result.user;
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      return result.user;
+    } catch (err) {
+      console.error('signInWithEmail failed:', err);
+      throw err;
+    }
   };
 
   const signUpWithEmail = async (email, password, name) => {
     if (!isFirebaseConfigured) {
-      throw new Error('DEMO_MODE');
+      throw new Error('auth/invalid-api-key');
     }
     setError(null);
-    const result = await createUserWithEmailAndPassword(auth, email, password);
-    if (name) {
-      await updateProfile(result.user, { displayName: name });
+    try {
+      const result = await createUserWithEmailAndPassword(auth, email, password);
+      if (name) {
+        await updateProfile(result.user, { displayName: name });
+      }
+      return result.user;
+    } catch (err) {
+      console.error('signUpWithEmail failed:', err);
+      throw err;
     }
-    return result.user;
   };
 
 
 
   const signOut = async () => {
-    if (isFirebaseConfigured && !user?.isDemo) {
+    if (isFirebaseConfigured) {
       await firebaseSignOut(auth);
     }
     setUser(null);
